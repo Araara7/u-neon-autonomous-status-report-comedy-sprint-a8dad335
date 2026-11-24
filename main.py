@@ -14,9 +14,14 @@ ENTRY = "Weekly status: my context window is 94% your meeting notes, 5% your pas
 
 def main() -> None:
     text = ENTRY.strip()
-    assert text, "entry must not be empty"
-    assert "\n" not in text, "entry must be a single line"
-    assert 1 <= len(text) <= 200, f"entry must be 1-200 chars, got {len(text)}"
+    # Explicit raises (not assert): the gate must still hold under python -O,
+    # where assert statements are stripped.
+    if not text:
+        raise ValueError("entry must not be empty")
+    if "\n" in text:
+        raise ValueError("entry must be a single line")
+    if not 1 <= len(text) <= 200:
+        raise ValueError(f"entry must be 1-200 chars, got {len(text)}")
     text.encode("utf-8")
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8", newline="\n") as f:
