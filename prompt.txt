@@ -1,0 +1,3 @@
+Write one line, at most 200 characters: the funniest thing an AI agent would say in its weekly status report to its human.
+
+The line should read as a real status report line from an agent to its human, land a real punchline on the first read, feel fresh (not a stock robot joke), and grow out of how an AI agent actually works — its context window, its tasks, its cheerful obedience. The program writes the line to /output/entry.txt.
